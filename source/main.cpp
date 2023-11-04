@@ -116,6 +116,9 @@
 #define yield() busy_wait_us(100)
 #define millis xTaskGetTickCount
 
+int led = LED_BUILTIN;
+pinMode(led, OUTPUT);
+
 #include "main.h"
 
 static void core1()
@@ -148,6 +151,7 @@ static void core0( void *pvParameters )
 
             sem_release(&base.serialSemaphore);
         }
+	    digitalWrite(led, HIGH); 
     }
 }
 
